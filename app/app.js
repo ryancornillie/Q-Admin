@@ -3,12 +3,29 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
-  'myApp.view1',
+  'ui.router',
+  'ngMaterial',
+  'myApp.login',
   'myApp.view2',
   'myApp.version'
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+
+config(function($stateProvider) {
+
+  var loginState = {
+    name: 'login',
+    url: '/login',
+    template: '<h3>hello world!</h3>'
+  };
+
+  var aboutState = {
+    name: 'about',
+    url: '/about',
+    template: '<h3>Its the UI-Router hello world app!</h3>'
+  };
+
+  $stateProvider.state(loginState);
+  $stateProvider.state(aboutState);
+
+});
