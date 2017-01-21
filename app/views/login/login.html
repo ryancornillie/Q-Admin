@@ -1,10 +1,14 @@
-<div style="margin-top:5%">
-        <md-card flex="50" style="margin: 0 auto; text-align: center" layout-padding layout-margin>
-            <div layout="column">
-                <img src="/res/img/icon.png" class="icon center"/>
-                <br/>
-                <md-button class="md-primary md-raised center" style="width: 300px">Login With Facebook</md-button>
-            </div>
-        </md-card>
-    </div>
+<div style="margin-top:5%"  ng-controller="LoginCtrl">
+    <md-card flex="50" style="margin: 0 auto; text-align: center" layout-padding layout-margin>
+        <div layout="column">
+            <img src="/res/img/icon.png" class="icon center"/>
+            <br/>
+            <md-button class="md-primary md-raised center" style="width: 300px">
+                <a ng-href="https://www.facebook.com/v2.8/dialog/oauth?client_id={{clientId}}&redirect_uri={{redirectUri}}&response_type=token&scope=email">
+                    Login With Facebook
+                </a>
+            </md-button>
+        </div>
+    </md-card>
+</div>
 </div>

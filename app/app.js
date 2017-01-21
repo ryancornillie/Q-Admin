@@ -9,7 +9,8 @@ angular.module('myApp', [
   'myApp.login',
   'myApp.home',
   'myApp.officeService',
-  'myApp.version'
+  'myApp.version',
+   'myApp.postLogin'
 ]).
 
 
@@ -33,8 +34,18 @@ config(function($stateProvider, $urlRouterProvider) {
     }
   };
 
+  var postLoginState = {
+      name: 'postLogin',
+      url: '?access_token',
+      views: {
+          nav: {templateUrl: 'views/nav/nav.html'},
+          content: {templateUrl: 'views/post-login/post-login.html'}
+      }
+  };
+
   $stateProvider.state(loginState);
   $stateProvider.state(homeState);
+  $stateProvider.state(postLoginState);
 
   $urlRouterProvider.otherwise("/login");
 
