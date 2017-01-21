@@ -23,3 +23,15 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+.icon {
+  max-width:200px;
+  max-height:200px;
+  width:auto;
+  height:auto;
+}
+
+
+.center {
+  margin: 0 auto;
+}

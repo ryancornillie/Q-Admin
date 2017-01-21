@@ -11,22 +11,25 @@ angular.module('myApp', [
 ]).
 
 
-config(function($stateProvider) {
+config(function($stateProvider, $urlRouterProvider) {
 
   var loginState = {
     name: 'login',
     url: '/login',
-    template: '<h3>hello world!</h3>'
+    templateUrl: 'views/login/login.html'
   };
 
   var aboutState = {
     name: 'about',
     url: '/about',
-    template: '<h3>Its the UI-Router hello world app!</h3>'
+    template: '<h3>About</h3>'
   };
 
   $stateProvider.state(loginState);
   $stateProvider.state(aboutState);
+
+  $urlRouterProvider.otherwise("/login");
+
 
 }).
 
