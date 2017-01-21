@@ -5,8 +5,8 @@ angular.module('myApp', [
   'ngRoute',
   'ui.router',
   'ngMaterial',
+  'myApp.nav',
   'myApp.login',
-  'myApp.view2',
   'myApp.version'
 ]).
 
@@ -16,17 +16,23 @@ config(function($stateProvider, $urlRouterProvider) {
   var loginState = {
     name: 'login',
     url: '/login',
-    templateUrl: 'views/login/login.html'
+    views: {
+      nav: {templateUrl: 'views/nav/nav.html'},
+      content: {templateUrl: 'views/login/login.html'}
+    }
   };
 
-  var aboutState = {
-    name: 'about',
-    url: '/about',
-    template: '<h3>About</h3>'
+  var homeState = {
+    name: 'home',
+    url: '/home',
+    views: {
+      nav: {templateUrl: 'views/nav/nav.html'},
+      content: {templateUrl: 'views/home/home.html'}
+    }
   };
 
   $stateProvider.state(loginState);
-  $stateProvider.state(aboutState);
+  $stateProvider.state(homeState);
 
   $urlRouterProvider.otherwise("/login");
 

@@ -18,33 +18,13 @@
 </head>
 <body>
 
-
-  <md-toolbar class="md-hue-2">
-    <div class="md-toolbar-tools">
-      <md-button class="md-icon-button" aria-label="Settings">
-        <md-icon class="fa fa-navicon fa-2x"></md-icon>
-      </md-button>
-      <h2>
-        <span>Welcome Username</span>
-      </h2>
-      <span flex></span>
-      <md-button class="md-icon-button" aria-label="Favorite">
-        <md-icon class="fa fa-home fa-2x"></md-icon>
-      </md-button>
-      <md-button class="md-icon-button" aria-label="Favorite">
-        <md-icon class="fa fa-cog fa-2x"></md-icon>
-      </md-button>
-      <md-button class="md-icon-button" aria-label="Logout" ui-sref="logout">
-        <md-icon class="fa fa-sign-out fa-2x"></md-icon>
-      </md-button>
-    </div>
-  </md-toolbar>
-
   <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <ui-view></ui-view>
+  <div ui-view name="nav"></div>
+
+  <div ui-view name="content"></div>
 
   <!--<div>SpartaHack17: v<span app-version></span></div>-->
 
@@ -59,7 +39,8 @@
   <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="app.js"></script>
   <script src="views/login/login.js"></script>
-  <script src="views/view2/view2.js"></script>
+  <script src="views/home/home.js"></script>
+  <script src="views/nav/nav.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
