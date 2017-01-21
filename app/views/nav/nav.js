@@ -15,6 +15,12 @@ angular.module('myApp.nav', [])
             $state.go("login");
         };
 
+        $scope.add = function () {
+
+
+
+        };
+
 
         $scope.selectOffice = function(office) {
 
