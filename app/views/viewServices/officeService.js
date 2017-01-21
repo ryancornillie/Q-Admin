@@ -89,6 +89,10 @@ angular.module('myApp.officeService', [])
         return deferred.promise;
     };
 
+    service.activateOffice = function (id) {
+
+    };
+
 
     service.selectedOffice = null;
 
