@@ -47,5 +47,11 @@ config(function($mdThemingProvider) {
       .warnPalette('orange')
       .accentPalette('cyan');
 
-});
+})
+
+.constant('API', 'http://localhost:8888/api/v1');
+
+
+
+
 

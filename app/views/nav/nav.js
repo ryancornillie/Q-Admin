@@ -8,6 +8,13 @@ angular.module('myApp.nav', [])
 
     .controller('NavCtrl', function($scope, $state, $mdSidenav, OfficeService) {
 
+        $scope.init = function () {
+
+            OfficeService.getOffices();
+    };
+
+        $scope.init();
+
         $scope.offices = [ {location: "3467 EB", id:1, course: "ME 340"}, {location: "432 Wells", id:2, course: "MTH 223"} ];
 
         $scope.logout = function () {
@@ -17,9 +24,13 @@ angular.module('myApp.nav', [])
 
         $scope.add = function () {
 
+            OfficeService.adding = 1;
+
+            $scope.toggleLeft();
 
 
         };
+
 
 
         $scope.selectOffice = function(office) {
