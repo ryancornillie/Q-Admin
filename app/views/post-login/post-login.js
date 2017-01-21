@@ -1,32 +1,40 @@
 /**
  * Created by zacharyrosenthal on 1/21/17.
  */
-angular.module('myApp.postLogin', []).controller("PostLoginCtrl", function ($scope, $location, $stateParams) {
+angular.module('myApp.postLogin', ['angular-jwt'])
+    .controller("PostLoginCtrl", function ($scope, $location, $stateParams, $http, API, jwtHelper, DataService) {
 
-    function __init() {
+        function __init() {
 
-        console.log('st: ' , $stateParams);
+            console.log('st: ', $stateParams);
 
-        var url = $location.url();
+            var url = $location.url();
+
+            console.log(url);
+
+            var token = url.substr(url.indexOf('=') + 1, url.indexOf('&') - url.indexOf('=') - 1);
+            console.log(token);
+
+            $http.get(API + '/login/' + token).then(function (res) {
+
+                DataService.authToken = res.data;
 
 
-        console.log(url);
-
-        var token = url.substr(url.indexOf('=') + 1, url.indexOf('&') - url.indexOf('=') - 1);
-        console.log(token);
+                var tokenPayload = jwtHelper.decodeToken(res.data);
+                console.log('data: ', tokenPayload);
 
 
-      /*  PostLoginService.fourPointLogin(OAuthCode).then(function success(data) {
+                DataService.pictureUrl = tokenPayload.picture_url;
 
-            AuthService.setUserData(data);
+                DataService.userEmail = tokenPayload.email;
 
-            $state.go('home');
+                DataService.userName = tokenPayload.name;
 
-        }, function error(err) {
+            }, function (err) {
+                console.log('error: ', err)
+            });
 
-        });
-*/
-    }
+        }
 
-    __init();
-});
+        __init();
+    });
