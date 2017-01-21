@@ -10,7 +10,8 @@ angular.module('myApp', [
     'myApp.home',
     'myApp.officeService',
     'myApp.version',
-    'myApp.postLogin'
+    'myApp.postLogin',
+    'myApp.dataService'
 ]).config(function ($stateProvider, $urlRouterProvider) {
 
     var loginState = {
