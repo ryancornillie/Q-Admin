@@ -14,18 +14,21 @@
                     <span class="md-headline">{{office.selectedOffice.name}}</span>
                     <span class="md-subhead">{{office.selectedOffice.location}}</span>
                 </md-card-title-text>
+                <md-switch ng-model="active" class="md-primary" aria-label="Active" ng-change="activate"></md-switch>
             </md-card-title>
             <md-divider></md-divider>
             <h4>Schedule</h4>
-            <h4>M: 1-2</h4>
-            <h4>W: 2-4</h4>
+            <div ng-repeat="session in office.selectedOffice.sessions">
+                <h4>{{session.day}}</h4>
+                <h5>{{session.start_time}}</h5>
+            </div>
             <div layout="row" style="text-align: center">
                 <md-button class="md-warn center" flex="90" ng-click="deleteOffice(office.selectedOffice._id)">Delete Office</md-button>
             </div>
 
         </md-card>
     </div>
-        <div layout="column" flex>
+        <div layout="column" flex ng-if="active">
             <md-card>
                 <md-card-title>
                     <md-card-title-text>
@@ -47,6 +50,9 @@
                     </md-list-item>
                 </md-list>
             </md-content>
+        </div>
+        <div ng-if="!active">
+             <h2>Queue is not open</h2>
         </div>
     </div>
     <div ng-if="office.adding" layout-margin layout-padding>

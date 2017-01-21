@@ -42,7 +42,8 @@ angular.module('myApp.home', [])
             var data = {
                 name: $scope.new.name,
                 location: $scope.new.location,
-                description: $scope.new.description
+                description: $scope.new.description,
+                active: 0
             };
 
 
@@ -95,6 +96,12 @@ angular.module('myApp.home', [])
 
 
             });
+
+        };
+
+        $scope.activate = function() {
+
+            OfficeService.activate()
 
         };
 
