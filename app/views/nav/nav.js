@@ -10,12 +10,16 @@ angular.module('myApp.nav', [])
 
         $scope.init = function () {
 
-            OfficeService.getOffices();
-    };
+            OfficeService.getOffices().then(function success(offices) {
+
+                $scope.officeService = OfficeService;
+
+            });
+        };
+
 
         $scope.init();
 
-        $scope.offices = [ {location: "3467 EB", id:1, course: "ME 340"}, {location: "432 Wells", id:2, course: "MTH 223"} ];
 
         $scope.logout = function () {
 
@@ -30,7 +34,6 @@ angular.module('myApp.nav', [])
 
 
         };
-
 
 
         $scope.selectOffice = function(office) {

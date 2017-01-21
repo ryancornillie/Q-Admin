@@ -51,12 +51,12 @@ angular.module('myApp.home', [])
             OfficeService.createOffice(data).then(function success(office) {
 
 
-                var office = office;
+                var myOffice = office;
 
 
                 for (var day in $scope.new.schedule) {
 
-                    var data = {day: day, start_time: $scope.new.schedule[day], active:0, officeId: office._id};
+                    var data = {day: day, start_time: $scope.new.schedule[day], active:0, officeId: myOffice._id};
                     OfficeService.createSession(data);
 
                 }
@@ -70,9 +70,31 @@ angular.module('myApp.home', [])
         };
 
 
+        $scope.cancel = function() {
+            OfficeService.adding = 0;
+            $scope.new = {};
+            $scope.selected = [];
+        };
+
+
         $scope.deleteOffice = function(id) {
 
+            console.log(id);
 
+            OfficeService.deleteOffice(id).then(function success(response) {
+
+                for (var i = 0, len = OfficeService.offices.length; i < len; i++) {
+                    if (OfficeService.offices[i]._id == id) {
+                        OfficeService.offices.splice(i, 1);
+                        break;
+                    }
+                }
+
+                OfficeService.selectedOffice = null;
+
+
+
+            });
 
         };
 
