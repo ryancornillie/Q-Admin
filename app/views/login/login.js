@@ -3,6 +3,7 @@
 angular.module('myApp.login', [])
 
 
-.controller('LoginCtrl', [function() {
+.controller('LoginCtrl', function() {
 
-}]);
+
+});

@@ -1,14 +1,11 @@
 'use strict';
 
-angular.module('myApp.view2', ['ngRoute'])
+angular.module('myApp.home', [])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/home', {
-    templateUrl: 'views/home/home.html',
-    controller: 'View2Ctrl'
-  });
-}])
+  .controller('HomeCtrl', function($scope) {
 
-.controller('View2Ctrl', [function() {
+    $scope.offices = [ {location: "3467 EB", id:1, course: "ME 340"}, {location: "432 Wells", id:2, course: "MTH 223"} ];
 
-}]);
+    $scope.queue = [ {name: "Timmy Daniel"}, {name: "Irene Baldwin"}, {name: "Robin	Marsh"}, {name: "Hubert	Cortez"} ];
+
+});

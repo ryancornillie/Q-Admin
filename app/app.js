@@ -7,6 +7,7 @@ angular.module('myApp', [
   'ngMaterial',
   'myApp.nav',
   'myApp.login',
+  'myApp.home',
   'myApp.version'
 ]).
 
