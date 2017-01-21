@@ -28,4 +28,13 @@ config(function($stateProvider) {
   $stateProvider.state(loginState);
   $stateProvider.state(aboutState);
 
+}).
+
+config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+      .primaryPalette('blue')
+      .warnPalette('orange')
+      .accentPalette('cyan');
+
 });
+
