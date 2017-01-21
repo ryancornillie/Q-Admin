@@ -6,13 +6,23 @@
 
 angular.module('myApp.nav', [])
 
-    .controller('NavCtrl', function($scope, $state, $mdSidenav) {
+    .controller('NavCtrl', function($scope, $state, $mdSidenav, OfficeService) {
 
         $scope.offices = [ {location: "3467 EB", id:1, course: "ME 340"}, {location: "432 Wells", id:2, course: "MTH 223"} ];
 
         $scope.logout = function () {
 
             $state.go("login");
+        };
+
+
+        $scope.selectOffice = function(office) {
+
+            OfficeService.selectedOffice = office;
+
+            $scope.toggleLeft();
+
+
         };
 
         $scope.toggleLeft = buildToggler('left');

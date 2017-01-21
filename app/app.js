@@ -8,6 +8,7 @@ angular.module('myApp', [
   'myApp.nav',
   'myApp.login',
   'myApp.home',
+  'myApp.officeService',
   'myApp.version'
 ]).
 

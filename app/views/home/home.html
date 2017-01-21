@@ -1,7 +1,16 @@
 <div ng-controller="HomeCtrl" layout="row" layout-margin layout-padding>
-    <h1>{{myoffice}} Test</h1>
     <div layout="column" flex="30">
-
+        <md-card layout-padding layout-margin="">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{office.selectedOffice.course}}</span>
+                    <span class="md-subhead">{{office.selectedOffice.location}}</span>
+                </md-card-title-text>
+            </md-card-title>
+                <h4>Schedule</h4>
+                <h4>M: 1-2</h4>
+                <h4>W: 2-4</h4>
+        </md-card>
     </div>
     <div layout="column" flex>
         <md-card>
