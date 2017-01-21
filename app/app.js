@@ -19,7 +19,7 @@ config(function($stateProvider, $urlRouterProvider) {
 
   var loginState = {
     name: 'login',
-    url: '',
+    url: '/',
     views: {
       nav: {templateUrl: 'views/nav/nav.html'},
       content: {templateUrl: 'views/login/login.html'}

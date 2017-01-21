@@ -2,7 +2,7 @@
  * Created by zacharyrosenthal on 1/21/17.
  */
 angular.module('myApp.postLogin', ['angular-jwt'])
-    .controller("PostLoginCtrl", function ($scope, $location, $stateParams, $http, API, jwtHelper, DataService) {
+    .controller("PostLoginCtrl", function ($scope, $location, $stateParams, $http, API, jwtHelper, DataService, $state) {
 
         function __init() {
 
@@ -10,29 +10,34 @@ angular.module('myApp.postLogin', ['angular-jwt'])
 
             var url = $location.url();
 
-            console.log(url);
+            if (url.indexOf('access_token') == -1) {
+                $state.go('login');
+            } else {
 
-            var token = url.substr(url.indexOf('=') + 1, url.indexOf('&') - url.indexOf('=') - 1);
-            console.log(token);
+                console.log(url);
 
-            $http.get(API + '/login/' + token).then(function (res) {
+                var token = url.substr(url.indexOf('=') + 1, url.indexOf('&') - url.indexOf('=') - 1);
+                console.log(token);
 
-                DataService.authToken = res.data;
+                $http.get(API + '/login/' + token).then(function (res) {
 
+                    DataService.authToken = res.data;
 
-                var tokenPayload = jwtHelper.decodeToken(res.data);
-                console.log('data: ', tokenPayload);
+                    var tokenPayload = jwtHelper.decodeToken(res.data);
+                    console.log('data: ', tokenPayload);
 
+                    DataService.pictureUrl = tokenPayload.picture_url;
 
-                DataService.pictureUrl = tokenPayload.picture_url;
+                    DataService.userEmail = tokenPayload.email;
 
-                DataService.userEmail = tokenPayload.email;
+                    DataService.userName = tokenPayload.name;
 
-                DataService.userName = tokenPayload.name;
+                    $state.go('home');
 
-            }, function (err) {
-                console.log('error: ', err)
-            });
+                }, function (err) {
+                    console.log('error: ', err)
+                });
+            }
 
         }
 
