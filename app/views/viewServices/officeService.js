@@ -93,7 +93,6 @@ angular.module('myApp.officeService', [])
 
     };
 
-
     service.selectedOffice = null;
 
     service.adding = 0;
