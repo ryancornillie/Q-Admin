@@ -12,11 +12,11 @@ angular.module('myApp.officeService', [])
     service.getOffices = function () {
         var deferred = $q.defer();
 
-        console.log(API);
-
         $http.get(API + '/offices').then(function success(response) {
 
             console.log(response);
+
+            service.offices = response.data;
 
             deferred.resolve(response.data);
 
@@ -70,7 +70,13 @@ angular.module('myApp.officeService', [])
 
         var deferred = $q.defer();
 
-        $http.post(API + '/sessions', session).then(function success(response) {
+        var data = {
+            officeId: id
+        };
+
+        console.log(data);
+
+        $http.delete(API + '/offices/' + id, data).then(function success(response) {
 
             console.log(response);
 
@@ -84,10 +90,11 @@ angular.module('myApp.officeService', [])
     };
 
 
-
     service.selectedOffice = null;
 
     service.adding = 0;
+
+    service.offices = [];
 
     return service;
 });

@@ -13,7 +13,7 @@
 
         <md-content>
             <md-list flex>
-                <md-list-item class="md-3-line" ng-repeat="office in offices" ng-click="selectOffice(office)">
+                <md-list-item class="md-3-line" ng-repeat="office in officeService.offices" ng-click="selectOffice(office)">
                     <div class="md-list-item-text" layout="column">
                         <h3>{{office.name}}</h3>
                         <h4>{{office.location}}</h4>

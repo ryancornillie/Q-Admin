@@ -12,10 +12,11 @@ angular.module('myApp.nav', [])
 
             OfficeService.getOffices().then(function success(offices) {
 
-                $scope.offices = offices;
+                $scope.officeService = OfficeService;
 
             });
-    };
+        };
+
 
         $scope.init();
 
