@@ -15,15 +15,18 @@
             <md-list flex>
                 <md-list-item class="md-3-line" ng-repeat="office in offices" ng-click="selectOffice(office)">
                     <div class="md-list-item-text" layout="column">
-                        <h3>{{office.course}}</h3>
+                        <h3>{{office.name}}</h3>
                         <h4>{{office.location}}</h4>
                     </div>
-                    <md-divider ng-if="!$last"></md-divider>
+                    <md-divider></md-divider>
                 </md-list-item>
             </md-list>
         </md-content>
+        <md-divider></md-divider>
 
-        <md-button class="md-primary" ng-click="add()">Add Office</md-button>
+        <div layout="row">
+            <md-button class="md-primary" ng-click="add()" flex>Add Office</md-button>
+        </div>
 
     </md-sidenav>
 

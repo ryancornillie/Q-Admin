@@ -51,12 +51,12 @@ angular.module('myApp.home', [])
             OfficeService.createOffice(data).then(function success(office) {
 
 
-                var office = office;
+                var myoffice = office;
 
 
                 for (var day in $scope.new.schedule) {
 
-                    var data = {day: day, start_time: $scope.new.schedule[day], active:0, officeId: office._id};
+                    var data = {day: day, start_time: $scope.new.schedule[day], active:0, officeId: myoffice._id};
                     OfficeService.createSession(data);
 
                 }
@@ -67,6 +67,13 @@ angular.module('myApp.home', [])
             });
 
 
+        };
+
+
+        $scope.cancel = function() {
+            OfficeService.adding = 0;
+            $scope.new = {};
+            $scope.selected = [];
         };
 
 
