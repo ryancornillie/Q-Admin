@@ -58,6 +58,8 @@ angular.module('myApp.home', [])
                     var data = {day: day, start_time: $scope.new.schedule[day], officeId: myOffice._id};
                     OfficeService.createSession(data).then (function (resp) {
 
+                        OfficeService.adding = 0;
+
                         OfficeService.offices[OfficeService.offices.length -1].sessions.push(resp);
 
                     }, function(error) {
@@ -72,6 +74,7 @@ angular.module('myApp.home', [])
 
 
             });
+
 
 
         };
