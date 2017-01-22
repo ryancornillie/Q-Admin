@@ -116,6 +116,50 @@ angular.module('myApp.officeService', ['ngWebSocket'])
 
         };
 
+        service.activateOffice = function (office) {
+
+            var deferred = $q.defer();
+
+            var data = {
+                officeId: office._id,
+                active: office.active
+            };
+
+            console.log("activate", data);
+
+            $http.patch(API + '/offices/active', data).then(function success(response) {
+
+                console.log(response);
+
+                deferred.resolve(response.data);
+
+            }, function error(error) {
+                deferred.reject(error);
+            });
+
+            return deferred.promise;
+
+        };
+
+        service.next = function () {
+
+            var deferred = $q.defer();
+
+            $http.delete(API + '/offices/queue/pop').then(function success(response) {
+
+                console.log(response);
+
+                deferred.resolve(response.data);
+
+            }, function error(error) {
+                deferred.reject(error);
+            });
+
+            return deferred.promise;
+
+        };
+
+
         dataStream.onMessage(function (message) {
             console.dir(message);
             if (service.dataLoaded) {
