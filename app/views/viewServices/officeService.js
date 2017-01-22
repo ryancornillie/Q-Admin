@@ -102,7 +102,6 @@ angular.module('myApp.officeService', ['ngWebSocket'])
 
             console.log("activate", data);
 
-
             $http.patch(API + '/offices/active', data).then(function success(response) {
 
                 console.log(response);
@@ -115,19 +114,26 @@ angular.module('myApp.officeService', ['ngWebSocket'])
 
             return deferred.promise;
 
-
         };
 
         dataStream.onMessage(function (message) {
             console.dir(message);
             if (service.dataLoaded) {
-                var data = JSON.parse(message);
-                data.forEach(function (elm) {
-                    service.offices.forEach(function (office) {
-                        if (elm.officeId == office._id) {
+                var elm = JSON.parse(message.data);
+
+                service.offices.forEach(function (office) {
+                    if (elm.officeId == office._id) {
+                        if (elm.delete) {
+                            // take out of queue
+                            var index = 0;
+                            while (office.queue[index]._id != elm._id) {
+                                index++;
+                            }
+                            office.queue.splice(index,1);
+                        } else {
                             office.queue.push(elm);
                         }
-                    });
+                    }
                 });
             }
         });
