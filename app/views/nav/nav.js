@@ -12,7 +12,7 @@ angular.module('myApp.nav', [])
 
             $scope.userData = DataService;
 
-            $scope.user = localStorage.getItem('user');
+            $scope.userName = localStorage.getItem('userName');
 
             OfficeService.getOffices().then(function success(offices) {
 
@@ -26,6 +26,8 @@ angular.module('myApp.nav', [])
 
 
         $scope.logout = function () {
+
+            localStorage.clear();
 
             $state.go("login");
         };

@@ -18,6 +18,10 @@ angular.module('myApp.home', [])
 
         $scope.selected = [];
 
+        $scope.userName = localStorage.getItem('userName');
+
+        $scope.pictureUrl = localStorage.getItem('picture');
+
         $scope.toggle = function (day, list) {
 
             var idx = list.indexOf(day);
