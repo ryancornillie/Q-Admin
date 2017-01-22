@@ -32,7 +32,7 @@
     </div>
         <div layout="column" flex ng-if="office.selectedOffice.active">
 
-            <md-content ng-init="queue = office.selectedOffice.queue">
+            <md-content >
 
                 <md-card>
                     <md-card-title>
@@ -46,7 +46,7 @@
 
                 <md-list flex>
                     <md-subheader class="md-no-sticky">Students in Queue</md-subheader>
-                    <md-list-item class="md-2-line"ng-repeat="user in queue">
+                    <md-list-item class="md-2-line"ng-repeat="user in office.selectedOffice.queue">
                         <img ng-src="{{user.picture_url}}" class="md-avatar"/>
                         <div class="md-list-item-text">
                             <h3>{{user.name}}</h3>
