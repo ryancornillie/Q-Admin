@@ -120,10 +120,27 @@ angular.module('myApp.home', [])
 
             }, function (error) {
 
-                console.log("Error activating amteria", error)
+                console.log("Error activating office", error)
 
             });
 
         };
+
+
+        $scope.nextInLine = function () {
+
+
+            OfficeService.next().then(function (resp) {
+
+                OfficeService.selectedOffice.queue.pop();
+
+            }, function (error) {
+
+                console.log("Error popping off queue");
+            })
+
+
+
+        }
 
     });
