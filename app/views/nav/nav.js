@@ -47,8 +47,9 @@ angular.module('myApp.nav', [])
 
             OfficeService.selectedOffice = office;
 
-            $scope.toggleLeft();
+            OfficeService.adding = 0;
 
+            $scope.toggleLeft();
 
         };
 
