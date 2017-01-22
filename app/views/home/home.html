@@ -1,7 +1,5 @@
 <div ng-controller="HomeCtrl" layout-margin>
 
-
-
     <div ng-if="!office.selectedOffice && !office.adding" style="text-align: center">
         <h1>Welcome {{userName}}!</h1>
         <h2>Please use side menu bar to view and edit your office hours.</h2>
@@ -16,14 +14,18 @@
                     <span class="md-subhead">{{office.selectedOffice.location}}</span>
                 </md-card-title-text>
                 <md-switch ng-model="office.selectedOffice.active" class="md-primary" aria-label="Active" ng-change="activate(office.selectedOffice)"></md-switch>
+                <h4 ng-if="office.selectedOffice.active">Open</h4>
+                <h4 ng-if="!office.selectedOffice.active">Closed</h4>
             </md-card-title>
             <md-divider></md-divider>
-            <h4>Schedule</h4>
+            <h4>Schedule  <i class="fa fa-calendar fa-lg" aria-hidden="true"> </i></h4>
             <div ng-repeat="session in office.selectedOffice.sessions">
-                <span style="font-weight: bold">{{session.day}}:</span><span>{{session.start_time}}</span>
+                <span style="font-weight: bold">{{session.day}}:  </span><span>{{session.start_time}}</span>
             </div>
+            <br/>
+            <br/>
             <div layout="row" style="text-align: center">
-                <md-button class="md-warn center" flex="90" ng-click="deleteOffice(office.selectedOffice._id)">Delete Office</md-button>
+                <md-button class="md-warn center" flex="90" ng-click="deleteOffice(office.selectedOffice._id)">Delete Office Hours</md-button>
             </div>
 
         </md-card>
@@ -56,7 +58,16 @@
             </md-content>
         </div>
         <div ng-if="!office.selectedOffice.active">
-             <h2>Queue is not open</h2>
+
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <h2 class="md-no-sticky">Queue is currently closed</h2>
+                        <h4>Open the queue to allows mobile check-in.</h4>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+
         </div>
     </div>
     <div ng-if="office.adding" layout-margin layout-padding>

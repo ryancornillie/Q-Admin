@@ -20,7 +20,10 @@ angular.module('myApp.nav', [])
 
                 $scope.officeService = OfficeService;
 
+                OfficeService.selectedOffice = OfficeService.offices[0];
+
             });
+
         };
 
 
