@@ -130,17 +130,14 @@ angular.module('myApp.home', [])
         $scope.nextInLine = function () {
 
 
-            OfficeService.next().then(function (resp) {
+            OfficeService.next(OfficeService.selectedOffice._id).then(function (resp) {
 
-                OfficeService.selectedOffice.queue.pop();
+                console.log(resp);
 
             }, function (error) {
 
                 console.log("Error popping off queue");
             })
-
-
-
         }
 
     });

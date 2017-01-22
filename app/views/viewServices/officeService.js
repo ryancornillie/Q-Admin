@@ -127,13 +127,13 @@ angular.module('myApp.officeService', ['ngWebSocket'])
 
             console.log("activate", data);
 
-            $http.patch(API + '/offices/active', data).then(function success(response) {
+            $http.patch(API + '/offices/active', data).then(function (response) {
 
                 console.log(response);
 
                 deferred.resolve(response.data);
 
-            }, function error(error) {
+            }, function (error) {
                 deferred.reject(error);
             });
 
@@ -141,17 +141,19 @@ angular.module('myApp.officeService', ['ngWebSocket'])
 
         };
 
-        service.next = function () {
+        service.next = function (officeId) {
 
             var deferred = $q.defer();
-
-            $http.delete(API + '/offices/queue/pop').then(function success(response) {
+            console.log('oId: ' + officeId);
+            $http.delete(API + '/offices/queue/pop/' + officeId, {officeId: officeId}).then(function (response) {
 
                 console.log(response);
 
+                service.selectedOffice.queue.shift();
+
                 deferred.resolve(response.data);
 
-            }, function error(error) {
+            }, function (error) {
                 deferred.reject(error);
             });
 
