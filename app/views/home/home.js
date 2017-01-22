@@ -2,7 +2,7 @@
 
 angular.module('myApp.home', [])
 
-    .controller('HomeCtrl', function($scope, $mdSidenav, OfficeService) {
+    .controller('HomeCtrl', function($scope, $mdSidenav, OfficeService, DataService) {
 
 
         $scope.queue = [ {name: "Timmy Daniel"}, {name: "Irene Baldwin"}, {name: "Robin	Marsh"}, {name: "Hubert	Cortez"} ];
@@ -17,6 +17,10 @@ angular.module('myApp.home', [])
         $scope.new.schedule = {};
 
         $scope.selected = [];
+
+        $scope.userName = localStorage.getItem('userName');
+
+        $scope.pictureUrl = localStorage.getItem('picture');
 
         $scope.toggle = function (day, list) {
 
@@ -43,22 +47,30 @@ angular.module('myApp.home', [])
                 name: $scope.new.name,
                 location: $scope.new.location,
                 description: $scope.new.description,
-                active: 0
+                userId: DataService.userId,
+                userName: DataService.userName
             };
-
-
-            console.log('new',data);
 
             OfficeService.createOffice(data).then(function success(office) {
 
-
                 var myOffice = office;
 
+                OfficeService.offices.push(myOffice);
 
                 for (var day in $scope.new.schedule) {
 
-                    var data = {day: day, start_time: $scope.new.schedule[day], active:0, officeId: myOffice._id};
-                    OfficeService.createSession(data);
+                    var data = {day: day, start_time: $scope.new.schedule[day], officeId: myOffice._id};
+                    OfficeService.createSession(data).then (function (resp) {
+
+                        OfficeService.adding = 0;
+
+                        OfficeService.offices[OfficeService.offices.length -1].sessions.push(resp);
+
+                    }, function(error) {
+
+                        console.log(error);
+
+                    });
 
                 }
 
@@ -66,6 +78,7 @@ angular.module('myApp.home', [])
 
 
             });
+
 
 
         };

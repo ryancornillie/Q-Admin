@@ -2,8 +2,9 @@
 
 
 
-    <div ng-if="!office.selectedOffice">
-        <h1>Welcome, please select an office from the side bar</h1>
+    <div ng-if="!office.selectedOffice && !office.adding" style="text-align: center">
+        <h1>Welcome {{userName}}!</h1> <img ng-src="{{pictureUrl}}"/>
+        <h2>Please use side menu bar to view and edit your office hours.</h2>
     </div>
 
     <div ng-if="office.selectedOffice && !office.adding" layout="row" layout-margin layout-padding>
@@ -57,7 +58,7 @@
     </div>
     <div ng-if="office.adding" layout-margin layout-padding>
 
-        <h2>Add an Office</h2>
+        <h2>Set up Office Hours</h2>
 
         <md-content>
             <div layout-gt-sm="row">
@@ -75,7 +76,7 @@
                 <input ng-model="new.description">
             </md-input-container>
 
-            <h3>Office Hours</h3>
+            <h3>Schedule</h3>
 
             <div layout="row">
                 <div class="demo-select-all-checkboxes" flex="50" ng-repeat="day in days">

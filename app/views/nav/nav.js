@@ -6,9 +6,13 @@
 
 angular.module('myApp.nav', [])
 
-    .controller('NavCtrl', function($scope, $state, $mdSidenav, OfficeService) {
+    .controller('NavCtrl', function($scope, $state, $mdSidenav, OfficeService, DataService) {
 
         $scope.init = function () {
+
+            $scope.userData = DataService;
+
+            $scope.userName = localStorage.getItem('userName');
 
             OfficeService.getOffices().then(function success(offices) {
 
@@ -23,6 +27,8 @@ angular.module('myApp.nav', [])
 
         $scope.logout = function () {
 
+            localStorage.clear();
+
             $state.go("login");
         };
 
@@ -31,7 +37,6 @@ angular.module('myApp.nav', [])
             OfficeService.adding = 1;
 
             $scope.toggleLeft();
-
 
         };
 
