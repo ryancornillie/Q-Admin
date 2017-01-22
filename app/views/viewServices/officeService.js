@@ -91,7 +91,30 @@ angular.module('myApp.officeService', ['ngWebSocket'])
             return deferred.promise;
         };
 
-        service.activateOffice = function (id) {
+        service.activateOffice = function (office) {
+
+            var deferred = $q.defer();
+
+            var data = {
+                officeId: office._id,
+                active: office.active
+            };
+
+            console.log("activate", data);
+
+
+            $http.patch(API + '/offices/active', data).then(function success(response) {
+
+                console.log(response);
+
+                deferred.resolve(response.data);
+
+            }, function error(error) {
+                deferred.reject(error);
+            });
+
+            return deferred.promise;
+
 
         };
 

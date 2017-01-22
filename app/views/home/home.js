@@ -54,9 +54,15 @@ angular.module('myApp.home', [])
 
                 OfficeService.offices.push(myOffice);
 
-                for (var day in $scope.new.schedule) {
+                var schedule = $scope.new.schedule;
 
-                    var data = {day: day, start_time: $scope.new.schedule[day], officeId: myOffice._id};
+                $scope.new = {};
+
+                $scope.selected = [];
+
+                for (var day in schedule) {
+
+                    var data = {day: day, start_time: schedule[day], officeId: myOffice._id};
                     OfficeService.createSession(data).then (function (resp) {
 
                         OfficeService.adding = 0;
@@ -107,9 +113,16 @@ angular.module('myApp.home', [])
 
         };
 
-        $scope.activate = function() {
+        $scope.activate = function(office) {
 
-            OfficeService.activate()
+
+            OfficeService.activateOffice(office).then(function (resp) {
+
+            }, function (error) {
+
+                console.log("Error activating amteria", error)
+
+            });
 
         };
 
