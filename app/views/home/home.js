@@ -113,6 +113,4 @@ angular.module('myApp.home', [])
 
         };
 
-
-
     });

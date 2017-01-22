@@ -5,9 +5,11 @@
 
 angular.module('myApp.officeService', [])
 
-.factory("OfficeService", function ($http, $q, API) {
+.factory("OfficeService", function ($http, $q, API, $websocket) {
 
     var service = {};
+
+    var dataStream;
 
     service.getOffices = function () {
         var deferred = $q.defer();
@@ -17,6 +19,8 @@ angular.module('myApp.officeService', [])
             console.log(response);
 
             service.offices = response.data;
+
+            dataStream = $websocket('ws://website.com/data');
 
             deferred.resolve(response.data);
 
@@ -92,6 +96,19 @@ angular.module('myApp.officeService', [])
     service.activateOffice = function (id) {
 
     };
+
+    dataStream.onMessage(function(message) {
+        console.dir(message);
+        var data = JSON.parse(message);
+        data.forEach(function (elm) {
+            service.offices.forEach(function (office) {
+                if (elm.officeId == office._id){
+                    office.queue.push(elm);
+                }
+            });
+        });
+        collection.push(JSON.parse(message.data));
+    });
 
     service.selectedOffice = null;
 
