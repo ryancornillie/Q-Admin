@@ -26,6 +26,8 @@ angular.module('myApp.postLogin', ['angular-jwt'])
                     var tokenPayload = jwtHelper.decodeToken(res.data);
                     console.log('data: ', tokenPayload);
 
+                    DataService.userId = tokenPayload._id;
+
                     DataService.pictureUrl = tokenPayload.picture_url;
 
                     DataService.userEmail = tokenPayload.email;

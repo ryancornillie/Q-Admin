@@ -16,5 +16,7 @@ angular.module('myApp.dataService', [])
 
         service.userName = '';
 
+        service.userId = '';
+
         return service;
     });
