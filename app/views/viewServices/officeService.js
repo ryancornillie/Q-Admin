@@ -127,12 +127,13 @@ angular.module('myApp.officeService', ['ngWebSocket'])
                             console.log('office: ', office);
                             // take out of queue
                             var index = 0;
-                            while (office.queue[index] && (office.queue[index]._id != elm._id)) {
+                            while (office.queue[index] && (office.queue[index]._id != elm.userId)) {
                                 index++;
                             }
+                            console.log('idx: ' + index);
                             office.queue.splice(index, 1);
                         } else {
-                            office.queue.push(elm);
+                            office.queue.push(elm.user);
                         }
                     }
                 });
