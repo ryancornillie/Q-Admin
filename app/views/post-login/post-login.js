@@ -19,7 +19,7 @@ angular.module('myApp.postLogin', ['angular-jwt'])
                 var token = url.substr(url.indexOf('=') + 1, url.indexOf('&') - url.indexOf('=') - 1);
                 console.log(token);
 
-                $http.post(API + '/login/', {token: token}).then(function (res) {
+                $http.post(API + '/login', {token: token}).then(function (res) {
 
                     DataService.authToken = res.data;
 
