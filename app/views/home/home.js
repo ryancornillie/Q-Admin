@@ -106,7 +106,8 @@ angular.module('myApp.home', [])
                     }
                 }
 
-                OfficeService.selectedOffice = null;
+
+                OfficeService.selectedOffice = OfficeService.offices[0];
 
 
             });
