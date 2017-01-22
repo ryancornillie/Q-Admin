@@ -32,20 +32,20 @@
 
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()">
+            <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()" ng-disabled="!user">
                 <md-icon class="fa fa-navicon fa-2x"></md-icon>
             </md-button>
             <h2>
-                <span>Welcome Username</span>
+                <span>Prof. Q</span>
             </h2>
             <span flex></span>
-            <md-button class="md-icon-button" aria-label="Home" ui-sref="home">
+            <md-button class="md-icon-button" aria-label="Home" ui-sref="home" ng-disabled="!user">
                 <md-icon class="fa fa-home fa-2x"></md-icon>
             </md-button>
             <!--<md-button class="md-icon-button" aria-label="Settings">-->
                 <!--<md-icon class="fa fa-cog fa-2x"></md-icon>-->
             <!--</md-button>-->
-            <md-button class="md-icon-button" aria-label="Logout" ng-click="logout()">
+            <md-button class="md-icon-button" aria-label="Logout" ng-click="logout()" ng-disabled="!user">
                 <md-icon class="fa fa-sign-out fa-2x"></md-icon>
             </md-button>
         </div>

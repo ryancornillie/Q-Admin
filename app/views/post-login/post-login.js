@@ -34,6 +34,8 @@ angular.module('myApp.postLogin', ['angular-jwt'])
 
                     DataService.userName = tokenPayload.name;
 
+                    localStorage.setItem('user', DataService.userName);
+
                     $state.go('home');
 
                 }, function (err) {

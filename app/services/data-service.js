@@ -8,15 +8,15 @@ angular.module('myApp.dataService', [])
 
         var service = {};
 
-        service.authToken = '';
+        service.authToken = null;
 
-        service.pictureUrl = '';
+        service.pictureUrl = null;
 
-        service.userEmail = '';
+        service.userEmail = null;
 
-        service.userName = '';
+        service.userName = null;
 
-        service.userId = '';
+        service.userId = null;
 
         return service;
     });
