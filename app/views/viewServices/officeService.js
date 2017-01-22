@@ -3,118 +3,117 @@
  */
 
 
-angular.module('myApp.officeService', [])
+angular.module('myApp.officeService', ['ngWebSocket'])
 
-.factory("OfficeService", function ($http, $q, API, $websocket) {
+    .factory("OfficeService", function ($http, $q, API, $websocket) {
 
-    var service = {};
+        var service = {};
 
-    var dataStream;
+        service.dataLoaded = false;
 
-    service.getOffices = function () {
-        var deferred = $q.defer();
+        var dataStream = $websocket('ws://localhost:3000');
 
-        $http.get(API + '/offices').then(function success(response) {
+        service.getOffices = function () {
+            var deferred = $q.defer();
 
-            console.log(response);
+            $http.get(API + '/offices').then(function success(response) {
 
-            service.offices = response.data;
+                console.log(response);
 
-            dataStream = $websocket('ws://website.com/data');
+                service.offices = response.data;
 
-            deferred.resolve(response.data);
+                service.dataLoaded = true;
 
-        }, function error(error) {
-            deferred.reject(error);
-        });
+                deferred.resolve(response.data);
 
-        return deferred.promise;
-    };
+            }, function error(error) {
+                deferred.reject(error);
+            });
 
-    service.createOffice = function (office) {
-        var deferred = $q.defer();
-
-
-        $http.post(API + '/offices', office).then(function success(response) {
-
-            console.log(response);
-
-            deferred.resolve(response.data);
-
-        }, function error(error) {
-            deferred.reject(error);
-        });
-
-        return deferred.promise;
-    };
-
-    service.createSession = function (session) {
-
-        var deferred = $q.defer();
-
-        console.log(session);
-
-
-        $http.post(API + '/sessions', session).then(function success(response) {
-
-            console.log(response);
-
-            deferred.resolve(response.data);
-
-        }, function error(error) {
-            deferred.reject(error);
-        });
-
-        return deferred.promise;
-    };
-
-
-
-    service.deleteOffice = function (id) {
-
-        var deferred = $q.defer();
-
-        var data = {
-            officeId: id
+            return deferred.promise;
         };
 
-        console.log(data);
+        service.createOffice = function (office) {
+            var deferred = $q.defer();
 
-        $http.delete(API + '/offices/' + id, data).then(function success(response) {
+            $http.post(API + '/offices', office).then(function success(response) {
 
-            console.log(response);
+                console.log(response);
 
-            deferred.resolve(response.data);
+                deferred.resolve(response.data);
 
-        }, function error(error) {
-            deferred.reject(error);
-        });
-
-        return deferred.promise;
-    };
-
-    service.activateOffice = function (id) {
-
-    };
-
-    dataStream.onMessage(function(message) {
-        console.dir(message);
-        var data = JSON.parse(message);
-        data.forEach(function (elm) {
-            service.offices.forEach(function (office) {
-                if (elm.officeId == office._id){
-                    office.queue.push(elm);
-                }
+            }, function error(error) {
+                deferred.reject(error);
             });
+
+            return deferred.promise;
+        };
+
+        service.createSession = function (session) {
+
+            var deferred = $q.defer();
+
+            console.log(session);
+
+            $http.post(API + '/sessions', session).then(function success(response) {
+
+                console.log(response);
+
+                deferred.resolve(response.data);
+
+            }, function error(error) {
+                deferred.reject(error);
+            });
+
+            return deferred.promise;
+        };
+
+        service.deleteOffice = function (id) {
+
+            var deferred = $q.defer();
+
+            var data = {
+                officeId: id
+            };
+
+            console.log(data);
+
+            $http.delete(API + '/offices/' + id, data).then(function success(response) {
+
+                console.log(response);
+
+                deferred.resolve(response.data);
+
+            }, function error(error) {
+                deferred.reject(error);
+            });
+
+            return deferred.promise;
+        };
+
+        service.activateOffice = function (id) {
+
+        };
+
+        dataStream.onMessage(function (message) {
+            if (service.dataLoaded) {
+                console.dir(message);
+                var data = JSON.parse(message);
+                data.forEach(function (elm) {
+                    service.offices.forEach(function (office) {
+                        if (elm.officeId == office._id) {
+                            office.queue.push(elm);
+                        }
+                    });
+                });
+            }
         });
-        collection.push(JSON.parse(message.data));
+
+        service.selectedOffice = null;
+
+        service.adding = 0;
+
+        service.offices = [];
+
+        return service;
     });
-
-    service.selectedOffice = null;
-
-    service.adding = 0;
-
-    service.offices = [];
-
-    return service;
-});
