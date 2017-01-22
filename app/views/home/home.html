@@ -3,7 +3,7 @@
 
 
     <div ng-if="!office.selectedOffice && !office.adding" style="text-align: center">
-        <h1>Welcome {{userName}}!</h1> <img ng-src="{{pictureUrl}}"/>
+        <h1>Welcome {{userName}}!</h1>
         <h2>Please use side menu bar to view and edit your office hours.</h2>
     </div>
 
@@ -15,7 +15,7 @@
                     <span class="md-headline">{{office.selectedOffice.name}}</span>
                     <span class="md-subhead">{{office.selectedOffice.location}}</span>
                 </md-card-title-text>
-                <md-switch ng-model="active" class="md-primary" aria-label="Active" ng-change="activate"></md-switch>
+                <md-switch ng-model="office.selectedOffice.active" class="md-primary" aria-label="Active" ng-change="activate()"></md-switch>
             </md-card-title>
             <md-divider></md-divider>
             <h4>Schedule</h4>
@@ -45,7 +45,7 @@
                     <md-subheader class="md-no-sticky">In Queue</md-subheader>
                     <md-list-item class="md-3-line" ng-repeat="user in queue">
                         <div class="md-list-item-text" layout="column">
-                            <h3>{{ user.name }}</h3>
+                            <h3>{{ user }}</h3>
                         </div>
                         <md-divider ng-if="!$last"></md-divider>
                     </md-list-item>
@@ -101,12 +101,7 @@
                 <md-button class=" md-primary center" flex="20" ng-click="cancel()">Cancel</md-button>
             </div>
 
-
-
-
-
         </md-content>
-
 
     </div>
 </div>

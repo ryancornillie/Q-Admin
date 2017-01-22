@@ -32,7 +32,7 @@
 
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()" ng-disabled="!userName">
+            <md-button class="md-icon-button margin-sm" aria-label="Settings" ng-click="toggleLeft()" ng-disabled="!userName">
                 <md-icon class="fa fa-navicon fa-2x"></md-icon>
             </md-button>
             <img src="/res/img/icon.png" style="max-height:60%; max-width:60%; margin: 10px"/>
@@ -40,13 +40,9 @@
                 <span>Prof. Q</span>
             </h2>
             <span flex></span>
-            <md-button class="md-icon-button" aria-label="Home" ui-sref="home" ng-disabled="!userName">
-                <md-icon class="fa fa-home fa-2x"></md-icon>
-            </md-button>
-            <!--<md-button class="md-icon-button" aria-label="Settings">-->
-                <!--<md-icon class="fa fa-cog fa-2x"></md-icon>-->
-            <!--</md-button>-->
-            <md-button class="md-icon-button" aria-label="Logout" ng-click="logout()" ng-disabled="!userName">
+            <span style="color: white; margin-right: 20px">{{userName}}</span>
+            <img style="max-height:70%; max-width:70%;" ng-src="{{pictureUrl}}"/>
+            <md-button class="md-icon-button margin-sm" aria-label="Logout" alt="logout" ng-click="logout()" ng-disabled="!userName">
                 <md-icon class="fa fa-sign-out fa-2x"></md-icon>
             </md-button>
         </div>

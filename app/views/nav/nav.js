@@ -14,6 +14,8 @@ angular.module('myApp.nav', [])
 
             $scope.userName = localStorage.getItem('userName');
 
+            $scope.pictureUrl = localStorage.getItem('picture');
+
             OfficeService.getOffices().then(function success(offices) {
 
                 $scope.officeService = OfficeService;
