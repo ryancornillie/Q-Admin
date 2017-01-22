@@ -15,7 +15,7 @@
                     <span class="md-headline">{{office.selectedOffice.name}}</span>
                     <span class="md-subhead">{{office.selectedOffice.location}}</span>
                 </md-card-title-text>
-                <md-switch ng-model="office.selectedOffice.active" class="md-primary" aria-label="Active" ng-change="activate()"></md-switch>
+                <md-switch ng-model="office.selectedOffice.active" class="md-primary" aria-label="Active" ng-change="activate(office.selectedOffice)"></md-switch>
             </md-card-title>
             <md-divider></md-divider>
             <h4>Schedule</h4>
@@ -29,7 +29,7 @@
 
         </md-card>
     </div>
-        <div layout="column" flex ng-if="active">
+        <div layout="column" flex ng-if="office.selectedOffice.active">
             <md-card>
                 <md-card-title>
                     <md-card-title-text>
@@ -52,7 +52,7 @@
                 </md-list>
             </md-content>
         </div>
-        <div ng-if="!active">
+        <div ng-if="!office.selectedOffice.active">
              <h2>Queue is not open</h2>
         </div>
     </div>

@@ -113,9 +113,16 @@ angular.module('myApp.home', [])
 
         };
 
-        $scope.activate = function() {
+        $scope.activate = function(office) {
 
-            OfficeService.activate()
+
+            OfficeService.activateOffice(office).then(function (resp) {
+
+            }, function (error) {
+
+                console.log("Error activating amteria", error)
+
+            });
 
         };
 
