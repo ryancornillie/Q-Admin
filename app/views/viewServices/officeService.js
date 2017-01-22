@@ -11,7 +11,7 @@ angular.module('myApp.officeService', ['ngWebSocket'])
 
         service.dataLoaded = false;
 
-        var dataStream = $websocket('ws://localhost:3000');
+        var dataStream = $websocket('ws://localhost:3333/test');
 
         service.getOffices = function () {
             var deferred = $q.defer();
