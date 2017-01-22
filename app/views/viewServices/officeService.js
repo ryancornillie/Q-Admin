@@ -96,8 +96,8 @@ angular.module('myApp.officeService', ['ngWebSocket'])
         };
 
         dataStream.onMessage(function (message) {
+            console.dir(message);
             if (service.dataLoaded) {
-                console.dir(message);
                 var data = JSON.parse(message);
                 data.forEach(function (elm) {
                     service.offices.forEach(function (office) {
