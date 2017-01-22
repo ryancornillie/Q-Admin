@@ -4,11 +4,9 @@ angular.module('myApp.home', [])
 
     .controller('HomeCtrl', function($scope, $mdSidenav, OfficeService, DataService) {
 
-
-        $scope.queue = [ {name: "Timmy Daniel"}, {name: "Irene Baldwin"}, {name: "Robin	Marsh"}, {name: "Hubert	Cortez"} ];
-
-
         $scope.office = OfficeService;
+
+        $scope.queue = [];
 
         $scope.days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -19,8 +17,6 @@ angular.module('myApp.home', [])
         $scope.selected = [];
 
         $scope.userName = localStorage.getItem('userName');
-
-        $scope.pictureUrl = localStorage.getItem('picture');
 
         $scope.toggle = function (day, list) {
 
@@ -48,7 +44,8 @@ angular.module('myApp.home', [])
                 location: $scope.new.location,
                 description: $scope.new.description,
                 userId: DataService.userId,
-                userName: DataService.userName
+                userName: DataService.userName,
+                active: 0
             };
 
             OfficeService.createOffice(data).then(function success(office) {
@@ -80,7 +77,6 @@ angular.module('myApp.home', [])
             });
 
 
-
         };
 
 
@@ -105,7 +101,6 @@ angular.module('myApp.home', [])
                 }
 
                 OfficeService.selectedOffice = null;
-
 
 
             });

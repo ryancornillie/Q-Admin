@@ -38,3 +38,7 @@
 .center {
   margin: 0 auto;
 }
+
+.margin-sm {
+  margin: 10px;
+}
