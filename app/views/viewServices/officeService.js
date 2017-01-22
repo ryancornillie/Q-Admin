@@ -124,9 +124,10 @@ angular.module('myApp.officeService', ['ngWebSocket'])
                 service.offices.forEach(function (office) {
                     if (elm.officeId == office._id) {
                         if (elm.delete) {
+                            console.log('office: ', office);
                             // take out of queue
                             var index = 0;
-                            while (office.queue[index]._id != elm._id) {
+                            while (office.queue[index] && (office.queue[index]._id != elm._id)) {
                                 index++;
                             }
                             office.queue.splice(index,1);
