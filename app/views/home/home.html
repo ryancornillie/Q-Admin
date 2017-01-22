@@ -20,8 +20,7 @@
             <md-divider></md-divider>
             <h4>Schedule</h4>
             <div ng-repeat="session in office.selectedOffice.sessions">
-                <h4>{{session.day}}</h4>
-                <h5>{{session.start_time}}</h5>
+                <span style="font-weight: bold">{{session.day}}:</span><span>{{session.start_time}}</span>
             </div>
             <div layout="row" style="text-align: center">
                 <md-button class="md-warn center" flex="90" ng-click="deleteOffice(office.selectedOffice._id)">Delete Office</md-button>
@@ -30,25 +29,29 @@
         </md-card>
     </div>
         <div layout="column" flex ng-if="office.selectedOffice.active">
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Current Student: Ted Bishop</span>
-                    </md-card-title-text>
-                    <md-button class="md-warn md-raised white">Skip</md-button>
-                    <md-button class="md-primary md-raised">Done</md-button>
-                </md-card-title>
-            </md-card>
-            <md-content>
-                <h2 class="md-no-sticky">Office Queue</h2>
+
+            <md-content ng-init="queue = office.selectedOffice.queue">
+
+                <md-card>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <h2 class="md-no-sticky">Office Hour Queue</h2>
+                        </md-card-title-text>
+                        <md-button class="md-warn md-raised white">Skip</md-button>
+                        <md-button class="md-primary md-raised">Done</md-button>
+                    </md-card-title>
+                </md-card>
+
                 <md-list flex>
-                    <md-subheader class="md-no-sticky">In Queue</md-subheader>
-                    <md-list-item class="md-3-line" ng-repeat="user in queue">
-                        <div class="md-list-item-text" layout="column">
-                            <h3>{{ user }}</h3>
+                    <md-subheader class="md-no-sticky">Students in Queue</md-subheader>
+                    <md-list-item class="md-2-line"ng-repeat="user in queue">
+                        <img ng-src="{{user.picture_url}}" class="md-avatar"/>
+                        <div class="md-list-item-text">
+                            <h3>{{user.name}}</h3>
+                            <p>{{user.email}}</p>
                         </div>
-                        <md-divider ng-if="!$last"></md-divider>
                     </md-list-item>
+                    <md-divider *ngIf="$first"></md-divider>
                 </md-list>
             </md-content>
         </div>

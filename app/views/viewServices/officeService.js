@@ -130,7 +130,7 @@ angular.module('myApp.officeService', ['ngWebSocket'])
                             while (office.queue[index] && (office.queue[index]._id != elm._id)) {
                                 index++;
                             }
-                            office.queue.splice(index,1);
+                            office.queue.splice(index, 1);
                         } else {
                             office.queue.push(elm);
                         }
